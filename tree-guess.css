@@ -1,0 +1,676 @@
+* {
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    background: url("tree.webp") no-repeat center fixed, linear-gradient(0deg, green, white);
+    background-size: cover;
+    -webkit-background-size: cover;
+    height: 100%;
+    overflow: hidden;
+}
+
+h1, h2 {
+    font-family: cursive;
+    text-align: center;
+    color: forestgreen;
+}
+
+h1 {
+    font-size: 2.5rem;
+}
+
+h2 {
+    font-size: 2rem;
+}
+
+.guess {
+    margin: 0.5rem auto;
+    border: 5px solid black;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    justify-content: center;
+    width: 50rem;
+}
+
+#num-tries-display {
+    width: 50rem;
+    margin: auto;
+    font-family: cursive;
+    color: white;
+    font-size: 2rem;
+    background-color: rgba(51,51,51, 0.6);
+    border: 5px solid black;
+    border-radius: 10px;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.keyboard {
+    width: 50rem;
+    height: 15rem;
+    margin: 1rem auto;
+    background: rgba(0,0,0,0.6);
+    border: 5px solid black;
+    border-radius: 10px;
+}
+
+.first-row, 
+.second-row,
+.third-row {
+    display: flex;
+    justify-content: center;
+}
+
+button {
+    box-sizing: border-box;
+    min-width: 4rem;
+    min-height: 4rem;
+    padding: 10px;
+    margin: 0.5rem;
+    background: green;
+    color: white;
+    border: 1px solid white;
+    border-radius: 3px;
+    font-size: 1.2rem;
+    cursor: pointer;
+    transition-property: background-color, color;
+    transition-duration: 0.2s;
+    transition-timing-function: ease-out;
+}
+
+button:hover {
+    background-color: white;
+    color: green;
+}
+
+#end-message {
+    background-color: rgba(128, 0, 128, 0.6);
+    color: white;
+    font-family: cursive;
+    font-size: 2rem;
+    text-align: center;
+}
+
+.first-buttons {
+    display: flex;
+    justify-content: center;
+    width: 36rem;
+    margin: 0 auto;
+}
+
+.first-buttons #retry, #next {
+    display: none;
+}
+
+.first-buttons > #play, #retry, #next {
+    min-width: 20rem;
+    min-height: 2rem;
+    margin: 1rem auto;
+    box-sizing: border-box;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.8);
+    font-family: cursive;
+    font-size: 1.5rem;
+}
+
+.first-buttons > #play:hover, #next:hover {
+    background-color: white;
+    color: black;
+}
+
+.first-buttons > #retry {
+    min-width: 20rem;
+    min-height: 2rem;
+    margin: 1rem;
+    box-sizing: border-box;
+    color: white;
+    border: 1px solid white;
+    border-radius: 10px;
+    background-color: rgba(0,0,0,0.8);
+    font-family: cursive;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    transform: scale(1);
+    background: rgba(51,51,51,0.5);
+    z-index: 2;
+    width: 100%;
+    height: 100%;
+    transform: translateX(-200%);
+    transition: transform 0.5s ease-out 1.5s;
+}
+
+.overlay h3 {
+    position: absolute;
+    top: 15rem;
+    left: calc(50% - 15rem);
+    width: 30rem;
+    color: white;
+    font-size: 2.5rem;
+    font-family: cursive;
+    text-align: center;
+}
+
+.overlay-flex {
+    position: absolute;
+    top: 19rem;
+    left: calc(50% - 30rem);
+    display: flex;
+    align-items: center;
+    min-height: 2rem;
+}
+
+.overlay-flex input {
+    width: 50rem;
+    height: 2rem;
+    font-size: 2rem;
+    border: 1px solid white;
+    border-radius: 1rem;
+    padding: 1rem;
+}
+
+.overlay-flex button {
+    height: 2rem;
+    padding: 1rem;
+    width: 10rem;
+}
+
+.overlay-show {
+    transform: translateX(0%);
+}
+
+.overlay-hide {
+    transform: translateX(-200%);
+    transition: transform 0.5s ease-out;
+}
+
+.overlay-2, .overlay-3, .overlay-4 {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(51,51,51,0.5);
+    z-index: 1;
+}
+
+.overlay-2 {
+    transform: translateY(-200%);
+    transition: transform 0.5s ease-out;
+}
+
+.overlay-3 {
+    transform: translateX(200%);
+    transition: transform 0.5s ease-out 0.5s;
+}
+
+.overlay-4 {
+    transform: translateY(200%);
+    transition: transform 0.5s ease-out 1s;
+}
+
+.overlay-2-show {
+    transform: translateY(0%);
+}
+
+.overlay-2-hide {
+    transform: translateY(-200%);
+    transition: transform 0.5s ease-out 1.5s;
+}
+
+.overlay-3-show {
+    transform: translateX(0%);
+}
+
+.overlay-3-hide {
+    transform: translateX(200%);
+    transition: transform 0.5s ease-out 1s;
+}
+
+.overlay-4-show {
+    transform: translateY(0%);
+}
+
+.overlay-4-hide {
+    transform: translateY(200%);
+    transition: transform 0.5s ease-out 0.5s;
+}
+
+.para-styles {
+    box-sizing: border-box;
+    width: 4rem;
+    height: 4rem;
+    padding: 10px;
+    margin: 1rem;
+    color: rgba(0,0,0,0);
+    border: 1px dashed white;
+    border-radius: 3px;
+    font-size: 2rem;
+    text-align: center;
+}
+
+#end-message {
+    position: absolute;
+    z-index: 2;
+    top: 0;
+    left: 0;
+    background: rgba(51,51,51,0.5);
+    width: 100%;
+    height: 100%;
+    display: none;
+}
+
+.end-message-show {
+    display: block;
+}
+
+.end-message-hide {
+    transform: scale(0);
+    transition: transform 0.5s ease-out;
+}
+
+@media (max-width: 818px) {
+    .first-buttons {
+        display: flex;
+        justify-content: center;
+        width: 36rem;
+        margin: 0 auto;
+    }
+
+    .guess {
+        margin: 0.5rem auto;
+        border: 5px solid black;
+        border-radius: 10px;
+        background-color: rgba(0,0,0,0.6);
+        display: flex;
+        justify-content: center;
+        width: 40rem;
+    }
+    
+    .keyboard {
+        width: 40rem;
+        margin: 1rem auto;
+        background: rgba(0,0,0,0.6);
+        border: 5px solid black;
+        border-radius: 10px;
+        overflow: auto;
+    }
+
+    #num-tries-display {
+        width: 40rem;
+        margin: auto;
+        font-family: cursive;
+        color: white;
+        font-size: 2rem;
+        background-color: rgba(51,51,51, 0.6);
+        border: 5px solid black;
+        border-radius: 10px;
+        display: flex;
+        justify-content: space-evenly;
+    }
+    
+    .first-row, 
+    .second-row,
+    .third-row {
+        display: block;
+    }
+
+    .keyboard button {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 4rem;
+        padding: 10px;
+        margin: 0.3rem auto;
+        background: green;
+        color: white;
+        border: 1px solid white;
+        border-radius: 3px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition-property: background-color, color;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-out;
+    }
+
+    .keyboard button:hover {
+        background-color: white;
+        color: green;
+    }
+
+    .overlay h3 {
+        position: absolute;
+        top: 15rem;
+        left: calc(50% - 15rem);
+        width: 30rem;
+        color: white;
+        font-size: 2.5rem;
+        font-family: cursive;
+        text-align: center;
+    }
+    
+    .overlay-flex {
+        position: absolute;
+        top: 19rem;
+        left: calc(50vw - 20rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        min-height: 10rem;
+        width: 40rem;
+    }
+    
+    .overlay-flex input {
+        width: 33rem;
+        height: 2rem;
+        font-size: 2rem;
+        border: 1px solid white;
+        border-radius: 1rem;
+        padding: 1rem;
+    }
+    
+    .overlay-flex button {
+        height: 2rem;
+        padding: 1rem;
+        width: 35rem;
+    }
+
+    .overlay-flex button:hover {
+        background-color: white;
+        color: green;
+    }
+    
+    .para-styles {
+        box-sizing: border-box;
+        width: 4rem;
+        height: 4rem;
+        padding: 10px;
+        margin: 0.5rem;
+        color: rgba(0,0,0,0);
+        border: 1px dashed white;
+        border-radius: 3px;
+        font-size: 2rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 656px) {
+    html, body {
+       overflow: hidden;
+    }
+
+    .first-buttons {
+        display: flex;
+        justify-content: center;
+        width: 35rem;
+        margin: 0 auto;
+    }
+
+    .guess {
+        margin: 0.5rem auto;
+        border: 5px solid black;
+        border-radius: 10px;
+        background-color: rgba(0,0,0,0.6);
+        display: flex;
+        justify-content: center;
+        width: 35rem;
+    }
+    
+    .keyboard {
+        width: 35rem;
+        height: 10rem;
+        margin: 1rem auto;
+        background: rgba(0,0,0,0.6);
+        border: 5px solid black;
+        border-radius: 10px;
+        overflow: auto;
+
+    }
+
+    #num-tries-display {
+        width: 35rem;
+        margin: auto;
+        font-family: cursive;
+        color: white;
+        font-size: 1rem;
+        background-color: rgba(51,51,51, 0.6);
+        border: 5px solid black;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        overflow-y: scroll;
+    }
+    
+    .first-row, 
+    .second-row,
+    .third-row {
+        display: block;
+    }
+
+    .keyboard button {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 4rem;
+        padding: 10px;
+        margin: 0.3rem auto;
+        background: green;
+        color: white;
+        border: 1px solid white;
+        border-radius: 3px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition-property: background-color, color;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-out;
+    }
+
+    .keyboard button:hover {
+        background-color: white;
+        color: green;
+    }
+
+    .overlay h3 {
+        position: absolute;
+        top: 15rem;
+        left: calc(50% - 15rem);
+        width: 30rem;
+        color: white;
+        font-size: 2.5rem;
+        font-family: cursive;
+        text-align: center;
+    }
+    
+    .overlay-flex {
+        position: absolute;
+        top: 19rem;
+        left: calc(50vw - 20rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        min-height: 10rem;
+        width: 40rem;
+    }
+    
+    .overlay-flex input {
+        width: 23rem;
+        height: 2rem;
+        font-size: 2rem;
+        border: 1px solid white;
+        border-radius: 1rem;
+        padding: 1rem;
+    }
+    
+    .overlay-flex button {
+        height: 2rem;
+        padding: 1rem;
+        width: 25rem;
+    }
+
+    .overlay-flex button:hover {
+        background-color: white;
+        color: green;
+    }
+
+    .para-styles {
+        box-sizing: border-box;
+        width: 3rem;
+        height: 3rem;
+        padding: 10px;
+        margin: 0.5rem;
+        color: rgba(0,0,0,0);
+        border: 1px dashed white;
+        border-radius: 3px;
+        font-size: 1.3rem;
+        text-align: center;
+    }
+}
+
+@media (max-width: 576px) {
+    html, body {
+       overflow: hidden;
+    }
+
+    .first-buttons {
+        display: flex;
+        justify-content: center;
+        width: 27rem;
+        margin: 0 auto;
+    }
+
+    .guess {
+        margin: 0.5rem auto;
+        border: 5px solid black;
+        border-radius: 10px;
+        background-color: rgba(0,0,0,0.6);
+        display: flex;
+        justify-content: center;
+        width: 27rem;
+    }
+    
+    .keyboard {
+        width: 27rem;
+        height: 10rem;
+        margin: 1rem auto;
+        background: rgba(0,0,0,0.6);
+        border: 5px solid black;
+        border-radius: 10px;
+        overflow: auto;
+
+    }
+
+    #num-tries-display {
+        width: 27rem;
+        margin: auto;
+        font-family: cursive;
+        color: white;
+        font-size: 1rem;
+        background-color: rgba(51,51,51, 0.6);
+        border: 5px solid black;
+        border-radius: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        overflow-y: scroll;
+    }
+    
+    .first-row, 
+    .second-row,
+    .third-row {
+        display: block;
+    }
+
+    .keyboard button {
+        display: block;
+        box-sizing: border-box;
+        width: 100%;
+        min-height: 4rem;
+        padding: 10px;
+        margin: 0.3rem auto;
+        background: green;
+        color: white;
+        border: 1px solid white;
+        border-radius: 3px;
+        font-size: 1.2rem;
+        cursor: pointer;
+        transition-property: background-color, color;
+        transition-duration: 0.2s;
+        transition-timing-function: ease-out;
+    }
+
+    .keyboard button:hover {
+        background-color: white;
+        color: green;
+    }
+
+    .overlay h3 {
+        position: absolute;
+        top: 15rem;
+        left: calc(50% - 15rem);
+        width: 29rem;
+        color: white;
+        font-size: 2.5rem;
+        font-family: cursive;
+        text-align: center;
+    }
+    
+    .overlay-flex {
+        position: absolute;
+        top: 19rem;
+        left: calc(50vw - 20rem);
+        display: flex;
+        flex-direction: column;
+        justify-content: space-evenly;
+        align-items: center;
+        min-height: 10rem;
+        width: 40rem;
+    }
+    
+    .overlay-flex input {
+        width: 23rem;
+        height: 2rem;
+        font-size: 2rem;
+        border: 1px solid white;
+        border-radius: 1rem;
+        padding: 1rem;
+    }
+    
+    .overlay-flex button {
+        height: 2rem;
+        padding: 1rem;
+        width: 25rem;
+    }
+
+    .overlay-flex button:hover {
+        background-color: white;
+        color: green;
+    }
+
+    .para-styles {
+        box-sizing: border-box;
+        width: 3rem;
+        height: 3rem;
+        padding: 10px;
+        margin: 0.5rem;
+        color: rgba(0,0,0,0);
+        border: 1px dashed white;
+        border-radius: 3px;
+        font-size: 1.3rem;
+        text-align: center;
+    }
+}
