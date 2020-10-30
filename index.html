@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="author" content="Orrin">
+        <meta name="description" content="A tree-guessing game based on trees.">
+        <meta name="keywords" content="Guessing, game, trees">
+        <title>Tree-Guessing Game</title>
+        <link rel="stylesheet" href="hangman.css">
+        <script src="hangman.js" defer></script>
+    </head>
+    <body>
+        <h1>Tree-Guessing Game</h1>
+        <h2>Guess the tree.</h2> 
+        
+        <div class="guess"></div>
+        
+        <div id="num-tries-display">
+            <div id="num-tries">Tries Remaining: --</div>
+            <div id="score">Score: --</div>
+            <div id="level">Level: --</div>
+        </div>
+
+        <div id="end-message"><h1>Game Complete!</h1></div>
+
+        <div class="overlay">
+            <h3>Enter your guess:</h3>
+            <div class="overlay-flex">
+                <input type="text" id="user-guess" placeholder="Some tree...">
+                <button type="button" id="submit">Submit</button>
+            </div>
+        </div>
+        <div class="overlay-2"></div>
+        <div class="overlay-3"></div>
+        <div class="overlay-4"></div>
+
+        <div class="keyboard">
+            <div class="first-row">
+                <button type="button" id="q">Q</button>
+                <button type="button" id="w">W</button>
+                <button type="button" id="e">E</button>
+                <button type="button" id="r">R</button>
+                <button type="button" id="t">T</button>
+                <button type="button" id="y">Y</button>
+                <button type="button" id="u">U</button>
+                <button type="button" id="i">I</button>
+                <button type="button" id="o">O</button>
+                <button type="button" id="p">P</button>
+            </div>
+
+            <div class="second-row">
+                <button type="button" id="a">A</button>
+                <button type="button" id="s">S</button>
+                <button type="button" id="d">D</button>
+                <button type="button" id="f">F</button>
+                <button type="button" id="g">G</button>
+                <button type="button" id="h">H</button>
+                <button type="button" id="j">J</button>
+                <button type="button" id="k">K</button>
+                <button type="button" id="l">L</button>
+            </div>
+
+            <div class="third-row">
+                <button type="button" id="z">Z</button>
+                <button type="button" id="x">X</button>
+                <button type="button" id="c">C</button>
+                <button type="button" id="v">V</button>
+                <button type="button" id="b">B</button>
+                <button type="button" id="n">N</button>
+                <button type="button" id="m">M</button>
+            </div>
+        </div>
+        
+        <div class="first-buttons">
+            <button type="button" id="play">Play Game</button>
+            <button type="button" id="next">Next Level</button>
+            <div type="button" id="retry">Game Complete!</div>
+        </div>
+    </body>
+</html>
