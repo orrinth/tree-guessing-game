@@ -4,7 +4,7 @@
 }
 
 html, body {
-    background: url("images/forest.jpg") no-repeat center fixed, linear-gradient(0deg, green, white);
+    background: url(images/forest.jpg) no-repeat center fixed, linear-gradient(0deg, green, white);
     background-size: cover;
     -webkit-background-size: cover;
     height: 100%;
