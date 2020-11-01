@@ -4,9 +4,11 @@
 }
 
 html, body {
-    background: url(images/forest.jpg) no-repeat center fixed, linear-gradient(0deg, green, white);
+    background-image: url(images/forest.jpg);
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
     background-size: cover;
-    -webkit-background-size: cover;
     height: 100%;
     overflow: hidden;
 }
